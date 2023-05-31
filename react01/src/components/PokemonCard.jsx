@@ -2,9 +2,8 @@
 import PropTypes from "prop-types"; 
 
   // Définition du composant PokémonCard
-  function PokemonCard(props) {
-    // Sélection du deuxième Pokémon dans la liste
-  console.log(props);
+  const PokemonCard = (props) => {
+    
     // Retourne un élément figure contenant le nom et l'image du Pokémon
     return (
       <figure>
