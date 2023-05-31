@@ -5,6 +5,17 @@ import './App.css'
 import PokemonCard from './components/PokemonCard'
 
 function App() {
+
+// Déclaration d'un tableau contenant des objets Pokémon
+const pokemonList = [
+  {
+    name: "bulbasaur", // Nom du premier Pokémon
+    imgSrc: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png", // URL de l'image du premier Pokémon
+  },
+  {
+    name: "mew", // Nom du deuxième Pokémon
+  },
+];
   const [count, setCount] = useState(0)
 
   return (
@@ -19,7 +30,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <PokemonCard/>
+        <PokemonCard pokemon = {pokemonList[0]}/>
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
@@ -33,5 +44,6 @@ function App() {
     </>
   )
 }
+
 
 export default App
