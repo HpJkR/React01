@@ -5,6 +5,7 @@
 import './App.css'
 import PokemonCard from './components/PokemonCard'
 import { useState } from "react";
+import { useEffect } from 'react';
 import Navbar from './components/Navbar'
 
 const pokemonList = [
@@ -35,6 +36,15 @@ const pokemonList = [
 
 
   function App() {
+    useEffect(
+
+      () =>  {
+        alert("hello pokemon trainer :)");
+       
+      }, 
+      []
+   );
+    
     // Utilisation du hook useState pour gérer l'index du Pokémon actuellement affiché
     const [pokemonIndex, setPokemonIndex] = useState(0);
   
@@ -42,6 +52,7 @@ const pokemonList = [
     const handleClickBack = () => {
       if (pokemonIndex > 0) {
         setPokemonIndex(pokemonIndex - 1);
+       
       }
     };
   
@@ -49,9 +60,23 @@ const pokemonList = [
     const handleClickNext = () => {
       if (pokemonIndex < pokemonList.length - 1) {
         setPokemonIndex(pokemonIndex + 1);
+       
       }
     };
+
+    useEffect(() => {
+      if (pokemonList[pokemonIndex].name === 'pikachu') {
+        const delay = 100; // Délai de 0,1 secondes (100 millisecondes)
+        const timeoutId = setTimeout(() => {
+          alert('pika pikachu !!!');
+        }, delay);
   
+        return () => {
+          clearTimeout(timeoutId); // Nettoie le timeout lorsque le composant est démonté ou lorsque l'index change
+        };
+      }
+    }, [pokemonIndex]);
+
     return (
       <>
         {/* Titre de l'application */}
