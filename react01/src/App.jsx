@@ -7,8 +7,12 @@ import PokemonCard from './components/PokemonCard'
 import { useState } from "react";
 import Navbar from './components/Navbar'
 
-const pokemonList = [
-  {
+
+
+function App() {
+  const [pokemonIndex, setPokemonIndex] = useState(0);
+  const [pokemonList, setPokemonList] = useState([
+    {
       name: "bulbasaur",
       imgSrc:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
@@ -31,45 +35,25 @@ const pokemonList = [
     {
       name: "mew",
     },
-  ];
+  ]);
 
 
-  function App() {
-    // Utilisation du hook useState pour gérer l'index du Pokémon actuellement affiché
-    const [pokemonIndex, setPokemonIndex] = useState(0);
+  const handlePokemonClick = (index) => {
+    setPokemonIndex(index);
+    
+  };
+
   
-    // Gestionnaire d'événement pour le bouton "Previous"
-    const handleClickBack = () => {
-      if (pokemonIndex > 0) {
-        setPokemonIndex(pokemonIndex - 1);
-      }
-    };
   
-    // Gestionnaire d'événement pour le bouton "Next"
-    const handleClickNext = () => {
-      if (pokemonIndex < pokemonList.length - 1) {
-        setPokemonIndex(pokemonIndex + 1);
-      }
-    };
-  
-    return (
-      <>
-        {/* Titre de l'application */}
-        <h1>Attrapez les tous !</h1>
-        
-        {/* Affichage du Pokémon actuellement sélectionné */}
-        <PokemonCard pokemon={pokemonList[pokemonIndex]} />
-        
-        {/* Composant Navbar pour la navigation */}
-        <Navbar
-          pokemonIndex={pokemonIndex}
-          handleClickBack={handleClickBack}
-          handleClickNext={handleClickNext}
-          pokemonList={pokemonList}
-        />
-      </>
-    );
-  }
-  
-  export default App;
+
+  return (
+    <>
+      <h1>Attrapez les tous !</h1>
+      <PokemonCard pokemon={pokemonList[pokemonIndex]} />
+      <Navbar pokemonList={pokemonList} handlePokemonClick={handlePokemonClick} />
+    </>
+  );
+}
+
+export default App;
   
