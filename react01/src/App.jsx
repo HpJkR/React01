@@ -5,6 +5,7 @@
 import './App.css'
 import PokemonCard from './components/PokemonCard'
 import { useState } from "react";
+import Navbar from './components/Navbar'
 
 const pokemonList = [
   {
@@ -33,30 +34,42 @@ const pokemonList = [
   ];
 
 
-function App() {
-
-  const [pokemonIndex, setPokemonIndex] = useState(0)
-
-  const handleClickBack = () => {
-    if (pokemonIndex > 0){
-    setPokemonIndex(pokemonIndex - 1)}
-  }
-  const handleClickNext = () => {
-    if (pokemonIndex < pokemonList.length - 1){
-    setPokemonIndex(pokemonIndex + 1)} 
-  }
-
-
-  return (
-    <>
-      <h1>Attrapez les tous !</h1>
-      <div className="card">
-      <PokemonCard pokemon = {pokemonList[pokemonIndex]}/>
-      </div>
-      {pokemonIndex > 0 ? <button onClick={handleClickBack}>Previous</button> : <p></p> }
-      {pokemonIndex < pokemonList.length - 1 ? <button onClick={handleClickNext}>Next</button> : <p></p>}
-    </>
-  )
-}
+  function App() {
+    // Utilisation du hook useState pour gérer l'index du Pokémon actuellement affiché
+    const [pokemonIndex, setPokemonIndex] = useState(0);
   
-export default App;
+    // Gestionnaire d'événement pour le bouton "Previous"
+    const handleClickBack = () => {
+      if (pokemonIndex > 0) {
+        setPokemonIndex(pokemonIndex - 1);
+      }
+    };
+  
+    // Gestionnaire d'événement pour le bouton "Next"
+    const handleClickNext = () => {
+      if (pokemonIndex < pokemonList.length - 1) {
+        setPokemonIndex(pokemonIndex + 1);
+      }
+    };
+  
+    return (
+      <>
+        {/* Titre de l'application */}
+        <h1>Attrapez les tous !</h1>
+        
+        {/* Affichage du Pokémon actuellement sélectionné */}
+        <PokemonCard pokemon={pokemonList[pokemonIndex]} />
+        
+        {/* Composant Navbar pour la navigation */}
+        <Navbar
+          pokemonIndex={pokemonIndex}
+          handleClickBack={handleClickBack}
+          handleClickNext={handleClickNext}
+          pokemonList={pokemonList}
+        />
+      </>
+    );
+  }
+  
+  export default App;
+  
