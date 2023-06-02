@@ -1,10 +1,9 @@
-const Navbar = (props) => {
-  const { pokemonList, handlePokemonClick } = props;
-
+const Navbar = ({ pokemonIndex, setPokemonIndex, pokemonList}) => {
+  
   return (
     <>
       {pokemonList.map((pokemon, index) => (
-        <button key={index} onClick={() => handlePokemonClick(index)}>
+        <button key={pokemon.name} onClick={() => {setPokemonIndex((index))}}>
           {pokemon.name}
         </button>
       ))}
